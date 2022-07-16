@@ -45,12 +45,6 @@
   )
 
 ;;;###autoload
-(define-polymode dbt-mode
-  :hostmode 'dbt/sql-hostmode
-  :innermodes '(dbt/sql-jinja2-comments-innermode
-                dbt/sql-jinja2-innermode))
-
-;;;###autoload
 (add-to-list 'auto-mode-alist
              '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . dbt-mode))
 
@@ -118,7 +112,10 @@ FILE-NAME: the path to the model"
   "Toggle dbt mode, a local minor mode."
   :global nil
   :group 'dbt
-  :lighter " dbt")
+  :lighter " dbt"
+  :hostmode 'dbt/sql-hostmode
+  :innermodes '(dbt/sql-jinja2-comments-innermode
+                dbt/sql-jinja2-innermode))
 
 ;;;###autoload
 (add-hook 'sql-mode-hook 'dbt-mode)
