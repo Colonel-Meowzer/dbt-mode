@@ -18,6 +18,7 @@
 (require 'polymode)
 (require 'sql)
 (require 'jinja2-mode)
+(require 'projectile)
 
 ;;;###autoload
 (define-hostmode dbt/sql-hostmode
@@ -90,12 +91,13 @@
   (interactive)
   (async-shell-command "dbt build"))
 
+;; FIXME: Also doesn't work.
 (defun dbt-get-compiled-version (file-name)
     "Get the path to the compiled version of the file.
 FILE-NAME: the path to the model"
-    (let* ((git-root (replace-regexp-in-string "\n" "" (shell-command-to-string "pushd ~/workspace/dbt-analytics; git rev-parse --show-toplevel")))
+    (let* (
            (file-name-regex (concat "^" (file-name-nondirectory file-name) "$")))
-      (car (directory-files-recursively (concat git-root "/target/compiled/") file-name-regex ))))
+      (car (directory-files-recursively (concat (projectile-project-root) "/target/compiled/") file-name-regex ))))
 
 (defun dbt-open-compiled ()
   "Open the compiled version of the current buffer file."
