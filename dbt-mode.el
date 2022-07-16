@@ -109,6 +109,11 @@ FILE-NAME: the path to the model"
   (interactive)
   (async-shell-command "dbt compile"))
 
+(defun dbt-clean ()
+  "Call dbt clean on project in the current directory."
+  (interactive)
+  (async-shell-command "dbt clean"))
+
 ;;;###autoload
 (define-polymode dbt-mode
   :hostmode 'dbt/sql-hostmode
