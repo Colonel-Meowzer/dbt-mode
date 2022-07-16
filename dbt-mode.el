@@ -107,21 +107,21 @@ FILE-NAME: the path to the model"
   (async-shell-command "dbt compile"))
 
 ;;;###autoload
-(define-polymode dbt-mode-syntax
+(define-polymode dbt-mode
   :hostmode 'dbt/sql-hostmode
   :innermodes '(dbt/sql-jinja2-comments-innermode
                 dbt/sql-jinja2-innermode))
 
 
-;;;###autoload
-(define-minor-mode dbt-mode
-  "Toggle dbt mode, a local minor mode."
-  :global nil
-  :group 'dbt
-  :lighter " dbt")
+;;; ###autoload
+;; (define-minor-mode dbt-mode
+;;   "Toggle dbt mode, a local minor mode."
+;;   :global nil
+;;   :group 'dbt
+;;   :lighter " dbt")
 
-;;;###autoload
-(add-hook 'sql-mode-hook 'dbt-mode 'dbt-mode-syntax)
+;;; ###autoload
+;; (add-hook 'sql-mode-hook 'dbt-mode 'dbt-mode-syntax)
 
 (provide 'dbt-mode)
 
