@@ -113,15 +113,15 @@ FILE-NAME: the path to the model"
                 dbt/sql-jinja2-innermode))
 
 
-;;; ###autoload
-;; (define-minor-mode dbt-mode
-;;   "Toggle dbt mode, a local minor mode."
-;;   :global nil
-;;   :group 'dbt
-;;   :lighter " dbt")
+;;;###autoload
+(define-minor-mode dbt-mode
+  "Toggle dbt mode, a local minor mode."
+  :global nil
+  :group 'dbt
+  :lighter " dbt")
 
-;;; ###autoload
-;; (add-hook 'sql-mode-hook 'dbt-mode 'dbt-mode-syntax)
+;;;###autoload
+ (add-hook 'sql-mode-hook 'dbt-mode)
 
 (provide 'dbt-mode)
 
