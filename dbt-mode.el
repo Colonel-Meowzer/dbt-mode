@@ -91,19 +91,6 @@
   (interactive)
   (async-shell-command "dbt build"))
 
-;; FIXME: Also doesn't work.
-(defun dbt-get-compiled-version (file-name)
-    "Get the path to the compiled version of the file.
-FILE-NAME: the path to the model"
-    (let* (
-           (file-name-regex (concat "^" (file-name-nondirectory file-name) "$")))
-      (car (directory-files-recursively (concat (projectile-project-root) "/target/compiled/") file-name-regex ))))
-
-(defun dbt-open-compiled ()
-  "Open the compiled version of the current buffer file."
-  (interactive)
-  (find-file (dbt-get-compiled-version buffer-file-name)))
-
 (defun dbt-compile ()
   "Call dbt compile on project in the current directory."
   (interactive)
@@ -118,6 +105,20 @@ FILE-NAME: the path to the model"
   "Call dbt debug on project in the current directory."
   (interactive)
   (async-shell-command "dbt debug"))
+
+
+;; FIXME: Also doesn't work.
+(defun dbt-get-compiled-version (file-name)
+    "Get the path to the compiled version of the file.
+FILE-NAME: the path to the model"
+    (let* (
+           (file-name-regex (concat "^" (file-name-nondirectory file-name) "$")))
+      (car (directory-files-recursively (concat (projectile-project-root) "/target/compiled/") file-name-regex ))))
+
+(defun dbt-open-compiled ()
+  "Open the compiled version of the current buffer file."
+  (interactive)
+  (find-file (dbt-get-compiled-version buffer-file-name)))
 
 ;;;###autoload
 (define-polymode dbt-mode
