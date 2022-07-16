@@ -69,6 +69,7 @@
   (interactive)
   (async-shell-command "dbt test"))
 
+;; FIXME: Doesn't work. Replace with sqlfluff linting
 (defun dbt-format-buffer ()
   "Call dbt-format shell function on the current buffer's file location."
   (interactive)
@@ -123,6 +124,8 @@ FILE-NAME: the path to the model"
 ;;;###autoload
  (add-hook 'sql-mode-hook 'dbt-mode)
 
+;; TODO: Add hotkeys. I added doom-emacs hotkeys in my config.el file
+;;       due to doom-emacs leader functions not being available here.
 (provide 'dbt-mode)
 
 ;;; dbt-mode.el ends here
