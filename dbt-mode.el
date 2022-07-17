@@ -15,9 +15,9 @@
 
 ;;; Code:
 
-(require 'polymode)
+;; (require 'polymode)
 (require 'sql)
-(require 'jinja2-mode)
+;; (require 'jinja2-mode)
 (require 'projectile)
 
 ;; ;;;###autoload
