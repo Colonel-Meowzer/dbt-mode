@@ -44,7 +44,7 @@
   :head-adjust-face 'font-lock-comment-face
   :tail-adjust-face 'font-lock-comment-face)
 
-;;;###autoload
+;;; ###autoload
 (define-polymode poly-dbt-mode
   :hostmode 'dbt/sql-hostmode
   :innermodes '(dbt/sql-jinja2-comments-innermode
@@ -144,5 +144,5 @@ FILE-NAME: the path to the model"
 ;; TODO: Add hotkeys. I added doom-emacs hotkeys in my config.el file
 ;;       due to doom-emacs leader functions not being available here.
 (provide 'dbt-mode)
-
+(provide 'poly-dbt-mode)
 ;;; dbt-mode.el ends here
