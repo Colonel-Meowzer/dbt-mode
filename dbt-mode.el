@@ -20,34 +20,34 @@
 (require 'jinja2-mode)
 (require 'projectile)
 
-;;;###autoload
-(define-hostmode dbt/sql-hostmode
-  :mode 'sql-mode)
+;; ;;;###autoload
+;; (define-hostmode dbt/sql-hostmode
+;;   :mode 'sql-mode)
 
-;;;###autoload
-(define-innermode dbt/sql-jinja2-innermode
-  :mode 'jinja2-mode
-  :head-matcher "{[%{][+-]?"
-  :tail-matcher "[+-]?[%}]}"
-  :head-mode 'body
-  :tail-mode 'body)
+;; ;;;###autoload
+;; (define-innermode dbt/sql-jinja2-innermode
+;;   :mode 'jinja2-mode
+;;   :head-matcher "{[%{][+-]?"
+;;   :tail-matcher "[+-]?[%}]}"
+;;   :head-mode 'body
+;;   :tail-mode 'body)
 
-;; Comment blocks don't seem to work very well with jinja2/polymode,
-;; work around this by defining an inner mode just for the comments.
-;;;###autoload
-(define-innermode dbt/sql-jinja2-comments-innermode
-  :head-matcher "{#[+-]?"
-  :tail-matcher "[+-]?#}"
-  :head-mode 'body
-  :tail-mode 'body
-  :adjust-face 'font-lock-comment-face
-  :head-adjust-face 'font-lock-comment-face
-  :tail-adjust-face 'font-lock-comment-face
-  )
+;; ;; Comment blocks don't seem to work very well with jinja2/polymode,
+;; ;; work around this by defining an inner mode just for the comments.
+;; ;;;###autoload
+;; (define-innermode dbt/sql-jinja2-comments-innermode
+;;   :head-matcher "{#[+-]?"
+;;   :tail-matcher "[+-]?#}"
+;;   :head-mode 'body
+;;   :tail-mode 'body
+;;   :adjust-face 'font-lock-comment-face
+;;   :head-adjust-face 'font-lock-comment-face
+;;   :tail-adjust-face 'font-lock-comment-face
+;;   )
 
-;;;###autoload
-(add-to-list 'auto-mode-alist
-             '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . dbt-mode))
+;; ;;;###autoload
+;; (add-to-list 'auto-mode-alist
+;;              '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . dbt-mode))
 
 (defgroup dbt nil
   "Interact with sql databases using data build tool."
@@ -120,11 +120,11 @@ FILE-NAME: the path to the model"
   (interactive)
   (find-file (dbt-get-compiled-version buffer-file-name)))
 
-;;;###autoload
-(define-polymode dbt-mode
-  :hostmode 'dbt/sql-hostmode
-  :innermodes '(dbt/sql-jinja2-comments-innermode
-                dbt/sql-jinja2-innermode))
+;; ;;;###autoload
+;; (define-polymode dbt-mode
+;;   :hostmode 'dbt/sql-hostmode
+;;   :innermodes '(dbt/sql-jinja2-comments-innermode
+;;                 dbt/sql-jinja2-innermode))
 
 
 ;;;###autoload
