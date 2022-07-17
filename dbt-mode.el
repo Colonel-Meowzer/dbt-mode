@@ -21,7 +21,7 @@
 (require 'projectile)
 
 ;;;###autoload
-(define-hostmode dbt-sql-hostmode
+(define-hostmode dbt/sql-hostmode
   :mode 'sql-mode)
 
 ;;;###autoload
@@ -122,7 +122,7 @@ FILE-NAME: the path to the model"
 
 ;; ;;;###autoload
 (define-polymode poly-dbt-mode
-  :hostmode 'dbt-sql-hostmode
+  :hostmode 'dbt/sql-hostmode
   :innermodes '(dbt/sql-jinja2-comments-innermode
                 dbt/sql-jinja2-innermode))
 
