@@ -47,7 +47,7 @@
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist
-             '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . dbt-mode))
+             '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . poly-dbt-mode))
 
 (defgroup dbt nil
   "Interact with sql databases using data build tool."
@@ -141,7 +141,8 @@ FILE-NAME: the path to the model"
   :group 'dbt)
 
 ;;;###autoload
- (add-hook 'sql-mode-hook 'dbt-mode 'poly-dbt-mode)
+ ;; (add-hook 'sql-mode-hook 'dbt-mode 'poly-dbt-mode)
+ (add-hook 'sql-mode-hook 'dbt-mode)
 
 ;; TODO: Add hotkeys. I added doom-emacs hotkeys in my config.el file
 ;;       due to doom-emacs leader functions not being available here.
