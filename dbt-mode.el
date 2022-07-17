@@ -20,11 +20,11 @@
 (require 'jinja2-mode)
 (require 'projectile)
 
-;;;###autoload
+;;; ###autoload
 (define-hostmode dbt/sql-hostmode
   :mode 'sql-mode)
 
-;;;###autoload
+;;; ###autoload
 (define-innermode dbt/sql-jinja2-innermode
   :mode 'jinja2-mode
   :head-matcher "{[%{][+-]?"
@@ -34,7 +34,7 @@
 
 ;; Comment blocks don't seem to work very well with jinja2/polymode,
 ;; work around this by defining an inner mode just for the comments.
-;;;###autoload
+;;; ###autoload
 (define-innermode dbt/sql-jinja2-comments-innermode
   :head-matcher "{#[+-]?"
   :tail-matcher "[+-]?#}"
