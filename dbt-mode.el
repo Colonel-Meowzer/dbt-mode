@@ -132,6 +132,8 @@ FILE-NAME: the path to the model"
   (interactive)
   (find-file (dbt-get-compiled-version buffer-file-name)))
 
+;; I decided to turn this into a major mode instead
+;; in hopes that we can bind syntax-highlighting to it.
 ;;; ###autoload
 ;; (define-minor-mode dbt-mode
 ;;   "Toggle dbt mode, a local minor mode."
