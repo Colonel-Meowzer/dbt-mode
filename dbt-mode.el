@@ -2,7 +2,7 @@
 
 ;;
 
-;; Author: Richard Fulop <mail@richardfulop.com>
+;; Author: Richard Fulop <mail@richardfulop.com>, Dustin Leatherman <rahlord1391@gmail.com>
 ;; Keywords: convenience sql
 ;; Maintainer: Richard Fulop <mail@richardfulop.com>
 ;; Package-Requires: ((emacs "28.1"))
@@ -10,49 +10,54 @@
 ;; Version: prerelease
 
 ;;; Commentary:
+;; From Richard:
+;;    I haven't tested this on any earlier versions of Emacs, so I'm not providing any warranties for below 28.1.
+;; From Dustin:
+;;    My contributions add commands that can be used and attempt to add
+;;    syntax highlighting.
 
-;; I haven't tested this on any earlier versions of Emacs, so I'm not providing any warranties for below 28.1.
-
-;;; Code:
-
-(require 'polymode)
 (require 'sql)
-(require 'jinja2-mode)
 (require 'projectile)
 
-;;; ###autoload
-(define-hostmode dbt/sql-hostmode
-  :mode 'sql-mode)
+;; FIXME: The syntax highlighting isn't working terrible well. I run into issues
+;;        when attempting to autoload the functions. This was copy and pasted
+;;        and I am trying to figure it out from there.
+;; Credit to CyberShadow - https://github.com/CyberShadow/dbt-mode
+;; (require 'jinja2-mode)
+;; (require 'polymode)
+;; ;;; ###autoload
+;; (define-hostmode dbt/sql-hostmode
+;;   :mode 'sql-mode)
 
-;;; ###autoload
-(define-innermode dbt/sql-jinja2-innermode
-  :mode 'jinja2-mode
-  :head-matcher "{[%{][+-]?"
-  :tail-matcher "[+-]?[%}]}"
-  :head-mode 'body
-  :tail-mode 'body)
+;; ;;; ###autoload
+;; (define-innermode dbt/sql-jinja2-innermode
+;;   :mode 'jinja2-mode
+;;   :head-matcher "{[%{][+-]?"
+;;   :tail-matcher "[+-]?[%}]}"
+;;   :head-mode 'body
+;;   :tail-mode 'body)
 
-;; Comment blocks don't seem to work very well with jinja2/polymode,
-;; work around this by defining an inner mode just for the comments.
-;;; ###autoload
-(define-innermode dbt/sql-jinja2-comments-innermode
-  :head-matcher "{#[+-]?"
-  :tail-matcher "[+-]?#}"
-  :head-mode 'body
-  :tail-mode 'body
-  :adjust-face 'font-lock-comment-face
-  :head-adjust-face 'font-lock-comment-face
-  :tail-adjust-face 'font-lock-comment-face)
+;; ;; Comment blocks don't seem to work very well with jinja2/polymode,
+;; ;; work around this by defining an inner mode just for the comments.
+;; ;;; ###autoload
+;; (define-innermode dbt/sql-jinja2-comments-innermode
+;;   :head-matcher "{#[+-]?"
+;;   :tail-matcher "[+-]?#}"
+;;   :head-mode 'body
+;;   :tail-mode 'body
+;;   :adjust-face 'font-lock-comment-face
+;;   :head-adjust-face 'font-lock-comment-face
+;;   :tail-adjust-face 'font-lock-comment-face)
 
-;;; ###autoload
-(define-polymode poly-dbt-mode
-  :hostmode 'dbt/sql-hostmode
-  :innermodes '(dbt/sql-jinja2-comments-innermode
-                dbt/sql-jinja2-innermode))
+;; ;;; ###autoload
+;; (define-polymode poly-dbt-mode
+;;   :hostmode 'dbt/sql-hostmode
+;;   :innermodes '(dbt/sql-jinja2-comments-innermode
+;;                 dbt/sql-jinja2-innermode))
 
-;;;###autoload
-(add-to-list 'auto-mode-alist
-             '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . poly-dbt-mode))
+;; ;;;###autoload
+;; (add-to-list 'auto-mode-alist
+;;              '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . poly-dbt-mode))
 
 (defgroup dbt nil
   "Interact with sql databases using data build tool."
