@@ -17,7 +17,7 @@
 
 ;; (require 'polymode)
 (require 'sql)
-;; (require 'jinja2-mode)
+(require 'jinja2-mode)
 (require 'projectile)
 
 ;; ;;;###autoload
@@ -128,12 +128,16 @@ FILE-NAME: the path to the model"
 
 
 ;;;###autoload
-(define-minor-mode dbt-mode
-  "Toggle dbt mode, a local minor mode."
-  :global nil
-  :group 'dbt
-  :lighter " dbt")
+;; (define-minor-mode dbt-mode
+;;   "Toggle dbt mode, a local minor mode."
+;;   :global nil
+;;   :group 'dbt
+;;   :lighter " dbt")
 
+(define-derived-mode dbt-mode
+  sql-mode "DBT Mode"
+  "Major mode for Data Build Tool (DBT)."
+  :group 'dbt)
 ;;;###autoload
  (add-hook 'sql-mode-hook 'dbt-mode)
 
