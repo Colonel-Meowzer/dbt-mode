@@ -19,6 +19,7 @@
 (require 'sql)
 (require 'projectile)
 
+;;; Code:
 ;; FIXME: The syntax highlighting isn't working terrible well. I run into issues
 ;;        when attempting to autoload the functions. This was copy and pasted
 ;;        and I am trying to figure it out from there.
@@ -58,6 +59,7 @@
 ;; ;;;###autoload
 ;; (add-to-list 'auto-mode-alist
 ;;              '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . poly-dbt-mode))
+;;
 
 (defgroup dbt nil
   "Interact with sql databases using data build tool."
