@@ -24,26 +24,25 @@
 (define-hostmode dbt/sql-hostmode
   :mode 'sql-mode)
 
-;; ;;;###autoload
-;; (define-innermode dbt/sql-jinja2-innermode
-;;   :mode 'jinja2-mode
-;;   :head-matcher "{[%{][+-]?"
-;;   :tail-matcher "[+-]?[%}]}"
-;;   :head-mode 'body
-;;   :tail-mode 'body)
+;;;###autoload
+(define-innermode dbt/sql-jinja2-innermode
+  :mode 'jinja2-mode
+  :head-matcher "{[%{][+-]?"
+  :tail-matcher "[+-]?[%}]}"
+  :head-mode 'body
+  :tail-mode 'body)
 
-;; ;; Comment blocks don't seem to work very well with jinja2/polymode,
-;; ;; work around this by defining an inner mode just for the comments.
-;; ;;;###autoload
-;; (define-innermode dbt/sql-jinja2-comments-innermode
-;;   :head-matcher "{#[+-]?"
-;;   :tail-matcher "[+-]?#}"
-;;   :head-mode 'body
-;;   :tail-mode 'body
-;;   :adjust-face 'font-lock-comment-face
-;;   :head-adjust-face 'font-lock-comment-face
-;;   :tail-adjust-face 'font-lock-comment-face
-;;   )
+;; Comment blocks don't seem to work very well with jinja2/polymode,
+;; work around this by defining an inner mode just for the comments.
+;;;###autoload
+(define-innermode dbt/sql-jinja2-comments-innermode
+  :head-matcher "{#[+-]?"
+  :tail-matcher "[+-]?#}"
+  :head-mode 'body
+  :tail-mode 'body
+  :adjust-face 'font-lock-comment-face
+  :head-adjust-face 'font-lock-comment-face
+  :tail-adjust-face 'font-lock-comment-face)
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist
@@ -141,7 +140,6 @@ FILE-NAME: the path to the model"
   :group 'dbt)
 
 ;;;###autoload
- ;; (add-hook 'sql-mode-hook 'dbt-mode 'poly-dbt-mode)
  (add-hook 'sql-mode-hook 'dbt-mode)
 
 ;; TODO: Add hotkeys. I added doom-emacs hotkeys in my config.el file
