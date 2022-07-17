@@ -138,11 +138,10 @@ FILE-NAME: the path to the model"
   "Major mode for Data Build Tool (DBT)."
   :group 'dbt)
 
-;;;###autoload
- (add-hook 'sql-mode-hook 'dbt-mode)
+;;; ###autoload
+;; (add-hook 'sql-mode-hook 'dbt-mode)
 
 ;; TODO: Add hotkeys. I added doom-emacs hotkeys in my config.el file
 ;;       due to doom-emacs leader functions not being available here.
 (provide 'dbt-mode)
-(provide 'poly-dbt-mode)
 ;;; dbt-mode.el ends here
