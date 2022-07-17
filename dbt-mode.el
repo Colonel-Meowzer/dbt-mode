@@ -15,39 +15,39 @@
 
 ;;; Code:
 
-;; (require 'polymode)
+(require 'polymode)
 (require 'sql)
 (require 'jinja2-mode)
 (require 'projectile)
 
-;; ;;;###autoload
-;; (define-hostmode dbt/sql-hostmode
-;;   :mode 'sql-mode)
+;;;###autoload
+(define-hostmode dbt/sql-hostmode
+  :mode 'sql-mode)
 
-;; ;;;###autoload
-;; (define-innermode dbt/sql-jinja2-innermode
-;;   :mode 'jinja2-mode
-;;   :head-matcher "{[%{][+-]?"
-;;   :tail-matcher "[+-]?[%}]}"
-;;   :head-mode 'body
-;;   :tail-mode 'body)
+;;;###autoload
+(define-innermode dbt/sql-jinja2-innermode
+  :mode 'jinja2-mode
+  :head-matcher "{[%{][+-]?"
+  :tail-matcher "[+-]?[%}]}"
+  :head-mode 'body
+  :tail-mode 'body)
 
-;; ;; Comment blocks don't seem to work very well with jinja2/polymode,
-;; ;; work around this by defining an inner mode just for the comments.
-;; ;;;###autoload
-;; (define-innermode dbt/sql-jinja2-comments-innermode
-;;   :head-matcher "{#[+-]?"
-;;   :tail-matcher "[+-]?#}"
-;;   :head-mode 'body
-;;   :tail-mode 'body
-;;   :adjust-face 'font-lock-comment-face
-;;   :head-adjust-face 'font-lock-comment-face
-;;   :tail-adjust-face 'font-lock-comment-face
-;;   )
+;; Comment blocks don't seem to work very well with jinja2/polymode,
+;; work around this by defining an inner mode just for the comments.
+;;;###autoload
+(define-innermode dbt/sql-jinja2-comments-innermode
+  :head-matcher "{#[+-]?"
+  :tail-matcher "[+-]?#}"
+  :head-mode 'body
+  :tail-mode 'body
+  :adjust-face 'font-lock-comment-face
+  :head-adjust-face 'font-lock-comment-face
+  :tail-adjust-face 'font-lock-comment-face
+  )
 
-;; ;;;###autoload
-;; (add-to-list 'auto-mode-alist
-;;              '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . dbt-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist
+             '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . dbt-mode))
 
 (defgroup dbt nil
   "Interact with sql databases using data build tool."
@@ -121,25 +121,27 @@ FILE-NAME: the path to the model"
   (find-file (dbt-get-compiled-version buffer-file-name)))
 
 ;; ;;;###autoload
-;; (define-polymode dbt-mode
-;;   :hostmode 'dbt/sql-hostmode
-;;   :innermodes '(dbt/sql-jinja2-comments-innermode
-;;                 dbt/sql-jinja2-innermode))
+(define-polymode poly-dbt-mode
+  :hostmode 'dbt/sql-hostmode
+  :innermodes '(dbt/sql-jinja2-comments-innermode
+                dbt/sql-jinja2-innermode))
 
 
-;;;###autoload
+;;; ###autoload
 ;; (define-minor-mode dbt-mode
 ;;   "Toggle dbt mode, a local minor mode."
 ;;   :global nil
 ;;   :group 'dbt
 ;;   :lighter " dbt")
 
+;;;###autoload
 (define-derived-mode dbt-mode
   sql-mode "DBT Mode"
   "Major mode for Data Build Tool (DBT)."
   :group 'dbt)
+
 ;;;###autoload
- (add-hook 'sql-mode-hook 'dbt-mode)
+ (add-hook 'sql-mode-hook 'dbt-mode 'poly-dbt-mode)
 
 ;; TODO: Add hotkeys. I added doom-emacs hotkeys in my config.el file
 ;;       due to doom-emacs leader functions not being available here.
