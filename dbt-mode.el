@@ -45,6 +45,12 @@
   :tail-adjust-face 'font-lock-comment-face)
 
 ;;;###autoload
+(define-polymode poly-dbt-mode
+  :hostmode 'dbt/sql-hostmode
+  :innermodes '(dbt/sql-jinja2-comments-innermode
+                dbt/sql-jinja2-innermode))
+
+;;;###autoload
 (add-to-list 'auto-mode-alist
              '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . poly-dbt-mode))
 
@@ -118,13 +124,6 @@ FILE-NAME: the path to the model"
   "Open the compiled version of the current buffer file."
   (interactive)
   (find-file (dbt-get-compiled-version buffer-file-name)))
-
-;; ;;;###autoload
-(define-polymode poly-dbt-mode
-  :hostmode 'dbt/sql-hostmode
-  :innermodes '(dbt/sql-jinja2-comments-innermode
-                dbt/sql-jinja2-innermode))
-
 
 ;;; ###autoload
 ;; (define-minor-mode dbt-mode
