@@ -97,7 +97,9 @@ FILE-NAME: the path to the model"
   "Toggle dbt mode, a local minor mode."
   :global nil
   :group 'dbt
-  :lighter " dbt")
+  :lighter " dbt"
+  `(
+    (, (kbd "C-c dd" . 'dbt-debug))))
 
 ;;; ###autoload
 ;; (define-derived-mode dbt-mode
