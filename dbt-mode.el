@@ -20,46 +20,6 @@
 (require 'projectile)
 
 ;;; Code:
-;; FIXME: The syntax highlighting isn't working terrible well. I run into issues
-;;        when attempting to autoload the functions. This was copy and pasted
-;;        and I am trying to figure it out from there.
-;; Credit to CyberShadow - https://github.com/CyberShadow/dbt-mode
-;; (require 'jinja2-mode)
-;; (require 'polymode)
-;; ;;; ###autoload
-;; (define-hostmode dbt/sql-hostmode
-;;   :mode 'sql-mode)
-
-;; ;;; ###autoload
-;; (define-innermode dbt/sql-jinja2-innermode
-;;   :mode 'jinja2-mode
-;;   :head-matcher "{[%{][+-]?"
-;;   :tail-matcher "[+-]?[%}]}"
-;;   :head-mode 'body
-;;   :tail-mode 'body)
-
-;; ;; Comment blocks don't seem to work very well with jinja2/polymode,
-;; ;; work around this by defining an inner mode just for the comments.
-;; ;;; ###autoload
-;; (define-innermode dbt/sql-jinja2-comments-innermode
-;;   :head-matcher "{#[+-]?"
-;;   :tail-matcher "[+-]?#}"
-;;   :head-mode 'body
-;;   :tail-mode 'body
-;;   :adjust-face 'font-lock-comment-face
-;;   :head-adjust-face 'font-lock-comment-face
-;;   :tail-adjust-face 'font-lock-comment-face)
-
-;; ;;; ###autoload
-;; (define-polymode poly-dbt-mode
-;;   :hostmode 'dbt/sql-hostmode
-;;   :innermodes '(dbt/sql-jinja2-comments-innermode
-;;                 dbt/sql-jinja2-innermode))
-
-;; ;;;###autoload
-;; (add-to-list 'auto-mode-alist
-;;              '("/\\(dbt\\|queries\\|macros\\|dbt_modules\\)/.*\\.sql\\'" . poly-dbt-mode))
-;;
 
 (defgroup dbt nil
   "Interact with sql databases using data build tool."
@@ -132,20 +92,18 @@ FILE-NAME: the path to the model"
   (interactive)
   (find-file (dbt-get-compiled-version buffer-file-name)))
 
-;; I decided to turn this into a major mode instead
-;; in hopes that we can bind syntax-highlighting to it.
 ;;; ###autoload
-;; (define-minor-mode dbt-mode
-;;   "Toggle dbt mode, a local minor mode."
-;;   :global nil
-;;   :group 'dbt
-;;   :lighter " dbt")
+(define-minor-mode dbt-mode
+  "Toggle dbt mode, a local minor mode."
+  :global nil
+  :group 'dbt
+  :lighter " dbt")
 
-;;;###autoload
-(define-derived-mode dbt-mode
-  sql-mode "DBT Mode"
-  "Major mode for Data Build Tool (DBT)."
-  :group 'dbt)
+;;; ###autoload
+;; (define-derived-mode dbt-mode
+;;   sql-mode "DBT Mode"
+;;   "Major mode for Data Build Tool (DBT)."
+;;   :group 'dbt)
 
 ;;;###autoload
 (add-hook 'sql-mode-hook 'dbt-mode)
