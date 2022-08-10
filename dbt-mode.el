@@ -92,7 +92,7 @@ FILE-NAME: the path to the model"
   (interactive)
   (find-file (dbt-get-compiled-version buffer-file-name)))
 
-;;; ###autoload
+;;;###autoload
 (define-minor-mode dbt-mode
   "Toggle dbt mode, a local minor mode."
   :global nil
